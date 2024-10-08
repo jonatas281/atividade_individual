@@ -11,10 +11,26 @@ idades = []
 alturas = []
 pesos = []
 
+def calcular_imc (peso,altura):
+        return peso/(altura **2) 
+def clasificar_imc(imc):
+        if imc < 18.5:
+            return "abaixo do peso"
+        elif 18.5 <=imc <25:
+            return "peso normal"
+        elif 25 <= imc < 30:
+            return "sobrepeso"
+        elif  30 <= imc < 35:
+            return"obesidade grau I"
+        elif  35 <= imc < 40:
+            return"obesidade grau II"
+        elif imc >= 40:
+            return"obesidade grau III"
+              
 # Solicitando os dados dos usuários em um loop
 while True:
     logoSenai()
-    nome = input("Digite o nome do usuário (ou digite 'sair' para encerrar): ")
+    nome = input("Digite o nome e sobrenome do  (ou digite 'sair' para encerrar): ")
     
     # Verificando se o usuário quer sair
     if nome.lower() == 'sair':
@@ -24,13 +40,17 @@ while True:
     altura = float(input("Digite a altura do usuário (em metros): "))
     peso = float(input("Digite o peso do usuário (em quilogramas): "))
     
+
+    imc = calcular_imc(peso,altura)
+    classificacao = clasificar_imc(imc)
+
     # Adicionando os dados às listas
     nomes.append(nome)
     idades.append(idade)
     alturas.append(altura)
     pesos.append(peso)
 
-# Exibindo os dados armazenados
+    # Exibindo os dados armazenados
 logoSenai()
 print("\nDados dos usuários:")
 for i in range(len(nomes)):
@@ -39,4 +59,7 @@ for i in range(len(nomes)):
     print("Idade:", idades[i])
     print("Altura:", alturas[i], "metros")
     print("Peso:", pesos[i], "quilogramas")
+    print(f"o seu imc é: {imc:.2f}")
+    print(f"a classificação do seu imc é: {classificacao}")
     print()
+
